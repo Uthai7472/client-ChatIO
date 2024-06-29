@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://server-chatio.onrender.com');
 
 const App = () => {
   const [messages, setMessages] = useState([]);
@@ -37,7 +37,7 @@ const App = () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/messages');
+      const response = await axios.get('https://server-chatio.onrender.com/messages');
       setMessages(response.data.messages);
     } catch (error) {
       console.error('Error fetching messages:', error);
@@ -46,7 +46,7 @@ const App = () => {
 
   const sendMessage = async () => {
     try {
-      await axios.post('http://localhost:5000/messages', {
+      await axios.post('https://server-chatio.onrender.com/messages', {
         username, message
       });
       // Clear message input after sending
